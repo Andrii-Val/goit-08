@@ -12,26 +12,31 @@ form.addEventListener('input', throttle((event) =>{
 
 
 }), 500);
-
+ 
  if(localStorage.getItem('feedback-form-state')){
     formData= JSON.parse(localStorage.getItem('feedback-form-state'));
     for (let key in formData){
         form.elements[key].value = formData[key];
     }
  }
+
  form.addEventListener('submit',
 function onFormSubmit(event){
+    if(event.target.elements.email.value ==="" || event.target.elements.message.value ===""){
+        return alert("заповніть всі поля!!!!!!!!!!!!!");
+    }
     event.preventDefault();
     event.currentTarget.reset();
-    localStorage.removeItem('feedback-form-state')
+    localStorage.removeItem('feedback-form-state',  )
     console.log(formData);
+    formData = {};
   }
  )
 
 
 
 
- 
+
 // const refs = {
 //     form: document.querySelector('.feedback-form '),
 //     textarea: document.querySelector('.feedback-form textarea')
